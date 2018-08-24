@@ -6,5 +6,7 @@ set shiftwidth=4
 " On pressing tab, insert 4 spaces
 set expandtab
 
+set number
+
 au BufRead,BufNewFile *.asm set filetype=nasm
 au BufRead,BufNewFile *.inc set filetype=nasm
