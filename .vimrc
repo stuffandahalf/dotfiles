@@ -7,6 +7,8 @@ set shiftwidth=4
 "set expandtab
 
 set number
+syntax on
 
 au BufRead,BufNewFile *.asm set filetype=nasm
 au BufRead,BufNewFile *.inc set filetype=nasm
+
