@@ -10,10 +10,23 @@ syntax on
 set foldmethod=syntax
 set foldlevel=99
 set incsearch
+" fuzzyish searching
+set path+=**
+set wildmenu
+
+let uname = system('uname')
+let arch = system('uname -a')
+if uname == 'Darwin\n'
+	if arch == 'aarch64\n'
+		set runtimepath+=/opt/homebrew/opt/fzf
+	elseif arch == 'amd64\n'
+		set runtimepath+=/usr/local/opt/fzf
+	endif
+endif
 
 "colorscheme darkblue
-" colorscheme slate with "amber" text
-colorscheme slate
+" colorscheme evening with "amber" text
+colorscheme evening
 highlight Normal ctermfg=214
 
 au BufRead,BufNewFile *.asm set filetype=nasm
@@ -22,3 +35,11 @@ au BufReadPost,BufNewFile *.vue,*.html set syntax=html expandtab tabstop=2 shift
 
 filetype plugin indent on
 packadd! matchit
+
+let mapleader = " "
+nnoremap <leader>f :find *
+nnoremap <leader>F :FZF<CR>
+nnoremap <leader>g :grep -rni
+nnoremap <leader>T :tabnew<CR>
+nnoremap <leader>z :suspend<CR>
+
