@@ -14,12 +14,12 @@ set incsearch
 set path+=**
 set wildmenu
 
-let uname = system('uname')
-let arch = system('uname -a')
-if uname == 'Darwin\n'
-	if arch == 'aarch64\n'
+let uname = substitute(system('uname'), '\n', '', '')
+let arch = substitute(system('uname -m'), '\n', '', '')
+if uname ==? 'darwin'
+	if arch ==? 'arm64'
 		set runtimepath+=/opt/homebrew/opt/fzf
-	elseif arch == 'amd64\n'
+	elseif arch ==? 'amd64'
 		set runtimepath+=/usr/local/opt/fzf
 	endif
 endif
@@ -32,11 +32,14 @@ highlight Normal ctermfg=214
 au BufRead,BufNewFile *.asm set filetype=nasm
 au BufRead,BufNewFile *.inc set filetype=nasm
 au BufReadPost,BufNewFile *.vue,*.html set syntax=html expandtab tabstop=2 shiftwidth=2 foldmethod=indent colorcolumn=120
+au BufReadPost,BufNewFile *.js set syntax=javascript expandtab tabstop=2 shiftwidth=2 foldmethod=indent colorcolumn=120 foldlevel=1
+au BufReadPost,BufNewFile *.ts set syntax=typescript expandtab tabstop=2 shiftwidth=2 foldmethod=indent colorcolumn=120 foldlevel=1
 
+let g:netrw_banner=0
 filetype plugin indent on
 packadd! matchit
 
-let mapleader = " "
+let mapleader=" "
 nnoremap <leader>f :find *
 nnoremap <leader>F :FZF<CR>
 nnoremap <leader>g :grep -rni
