@@ -45,10 +45,18 @@ nnoremap <leader>F :FZF<CR>
 nnoremap <leader>g :grep -rni
 nnoremap <leader>T :$tabnew<CR>
 nnoremap <leader>z :suspend<CR>
+
 " tab quick switching
 nnoremap <leader>1 1gt
 nnoremap <leader>2 2gt
 nnoremap <leader>3 3gt
 nnoremap <leader>4 4gt
 nnoremap <leader>5 5gt
+
+" git shortcuts
+nnoremap <leader>Gb :!git branch --show-current<CR>
+nnoremap <leader>Gs :!git status<CR>
+nnoremap <leader>GD :!git diff<CR>
+nnoremap <leader>Gd :!git diff %<CR>
+nnoremap <leader>Ga :!git add %<CR><CR>
 
