@@ -6,6 +6,7 @@ trap 'tput cnorm; echo ""; exit 1' INT QUIT TERM
 tput civis
 while true; do
 	HOST=`sysctl -n kern.hostname`
+	COLS=`stty size | cut -d' ' -f2`
 
 	# Battery status
 	BATS=`apm -a`
@@ -27,8 +28,20 @@ while true; do
 	TIME=`date "+%H:%M"`
 
 	# Display
-	clear
-	printf "%s\tPROC %sMHz (%s)\tBAT %s%% (%s mins %s)\t%s" "$HOST" "$PROCF" "$PROCM" "$BATP" "$BATT" "$BATS" "$TIME"
+
+	LEFT="`printf "%s" "$HOST" | xargs`"
+	MIDDLE="`printf "%s" "$TIME"`"
+	RIGHT="`printf "PROC %sMHz (%s)  BAT %s%% (%s mins %s)" "$PROCF" "$PROCM" "$BATP" "$BATT" "$BATS"`"
+	LEFTS=`echo -n "$LEFT" | wc -c`
+	MIDDLES=`echo -n "$MIDDLE" | wc -c`
+	RIGHTS=`echo -n "$RIGHT" | wc -c`
+
+	P1="`dc -e "$COLS 2 / $MIDDLES 2 / - $LEFTS - p"`"
+	P2="`dc -e "$COLS $LEFTS - $P1 - $MIDDLES - $RIGHTS - p"`"
+	P1="`printf "%-${P1}s" ""`"
+	P2="`printf "%-${P2}s" ""`"
+
+	printf "\r%s%s%s%s%s" "$LEFT" "$P1" "$MIDDLE" "$P2" "$RIGHT"
 	sleep 5
 done
 tput cnorm
