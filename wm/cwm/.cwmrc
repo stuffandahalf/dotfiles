@@ -1,0 +1,25 @@
+#fontname		"sans-serif:pixelsize=14:bold"
+sticky			yes
+
+ignore			bar
+
+command terminal	xterm
+command firefox		firefox
+
+autogroup 0		bar
+autogroup 1		terminal
+autogroup 2		firefox
+
+gap			30 0 0 0
+snapdist		5px
+moveamount		2px
+
+bind-key 4-v		window-vtile
+bind-key 4-s		window-htile
+bind-key 4-h		window-snap-left
+bind-key 4-j		window-snap-down
+bind-key 4-k		window-snap-up
+bind-key 4-l		window-snap-right
+
+bind-key 4-t		terminal
+bind-key 4-b		firefox

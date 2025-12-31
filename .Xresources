@@ -1,0 +1,12 @@
+XTerm*font		: *-fixed-*-*-*-18-*
+XTerm*termName		: xterm-256color
+XTerm*background	: #353535
+XTerm*foreground	: orange
+
+bar*font		: *-fixed-*-*-*-18-*
+bar*geometry		: 212x1+3+0
+bar*termName		: xterm-256color
+bar*background		: #353535
+bar*foreground		: orange
+bar*saveLines		: 0
+bar*scrollBar		: false
