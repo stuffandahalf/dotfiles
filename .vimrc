@@ -43,7 +43,8 @@ let mapleader=" "
 nnoremap <leader>f :find *
 nnoremap <leader>F :FZF<CR>
 nnoremap <leader>g :grep -rni
-nnoremap <leader>T :$tabnew<CR>
+nnoremap <leader>t :$tabnew<CR>
+nnoremap <leader>T :tabclose<CR>
 nnoremap <leader>z :suspend<CR>
 
 " tab quick switching

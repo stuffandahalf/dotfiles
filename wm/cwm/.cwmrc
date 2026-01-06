@@ -6,14 +6,16 @@ ignore			status.sh
 
 command terminal	xterm
 command firefox		firefox
+command launcher	xterm
 
-autogroup 0		bar
-autogroup 1		xterm
-autogroup 2		firefox
+autogroup 0			bar
+autogroup 0			launcher
+autogroup 1			xterm
+autogroup 2			firefox
 
-gap			30 0 0 0
-snapdist		5px
-moveamount		2px
+gap					30 0 0 0
+snapdist			5px
+moveamount			2px
 
 bind-key 4-v		window-vtile
 bind-key 4-s		window-htile
@@ -22,6 +24,7 @@ bind-key 4-j		window-snap-down
 bind-key 4-k		window-snap-up
 bind-key 4-l		window-snap-right
 
+bind-key 4-Escape	"xterm -e $HOME/bin/launcher.sh"
 bind-key 4-t		terminal
 bind-key 4-b		firefox
 

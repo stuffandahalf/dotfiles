@@ -5,6 +5,8 @@ xrdb -merge $HOME/.Xresources
 
 xsetroot -solid dimgrey
 
+xbacklight -set 20
+
 xidle &
 
 #xset b off

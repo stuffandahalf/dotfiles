@@ -17,6 +17,9 @@ while true; do
 		1) BATS="until full" ;;
 	esac
 
+	# Display Brightness
+	BRT=`xbacklight | cut -d'.' -f1`
+
 	# Processor freq
 	PROCF=`sysctl -n hw.cpuspeed`
 	PROCM=`apm -P`
@@ -31,7 +34,7 @@ while true; do
 
 	LEFT="`printf "%s" "$HOST" | xargs`"
 	MIDDLE="`printf "%s" "$TIME"`"
-	RIGHT="`printf "PROC %sMHz (%s)  BAT %s%% (%s mins %s)" "$PROCF" "$PROCM" "$BATP" "$BATT" "$BATS"`"
+	RIGHT="`printf "PROC %sMHz (%s)  BRT %s%%  BAT %s%% (%s mins %s)" "$PROCF" "$PROCM" "$BRT" "$BATP" "$BATT" "$BATS"`"
 	LEFTS=`echo -n "$LEFT" | wc -c`
 	MIDDLES=`echo -n "$MIDDLE" | wc -c`
 	RIGHTS=`echo -n "$RIGHT" | wc -c`
