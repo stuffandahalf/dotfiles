@@ -53,6 +53,7 @@ nnoremap <leader>2 2gt
 nnoremap <leader>3 3gt
 nnoremap <leader>4 4gt
 nnoremap <leader>5 5gt
+nnoremap <leader>$ 1gtgT
 
 " git shortcuts
 nnoremap <leader>Gb :!git branch --show-current<CR>
