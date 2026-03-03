@@ -1,6 +1,6 @@
 .POSIX:
 
-CONFIGS=$(HOME)/.vimrc #$(HOME)/.tmuxrc
+CONFIGS=$(HOME)/.vimrc $(HOME)/.tmux.conf
 XCONFIGS=$(HOME)/.Xresources
 
 all: $(CONFIGS) scripts
@@ -8,8 +8,8 @@ all: $(CONFIGS) scripts
 $(HOME)/.vimrc: $(PWD)/.vimrc
 	ln -sf $(PWD)/.vimrc $(HOME)/.vimrc
 
-$(HOME)/.tmuxrc: $(PWD)/.tmuxrc
-	ln -sf $(PWD)/.tmuxrc $(HOME)/.tmuxrc
+$(HOME)/.tmux.conf: $(PWD)/.tmux.conf
+	ln -sf $(PWD)/.tmux.conf $(HOME)/.tmux.conf
 
 xorg: $(XCONFIGS)
 
