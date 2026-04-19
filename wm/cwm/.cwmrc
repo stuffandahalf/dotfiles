@@ -24,7 +24,7 @@ bind-key 4-j		window-snap-down
 bind-key 4-k		window-snap-up
 bind-key 4-l		window-snap-right
 
-bind-key 4-Escape	"xterm -e $HOME/bin/launcher.sh"
+bind-key C-space	"xterm -e $HOME/bin/launcher.sh"
 bind-key 4-t		terminal
 bind-key 4-b		firefox
 
