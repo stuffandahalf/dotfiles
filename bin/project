@@ -1,0 +1,46 @@
+#!/bin/sh
+
+PROJECT_BASE="$HOME/git"
+
+set -e
+
+if [ $# -lt 1 ]; then
+	echo "usage: $0 proj_name" >&2
+	exit 1
+fi
+
+if tmux has-session -t "$1" 2>/dev/null; then
+	tmux attach -t "$1"
+	exit 0
+fi
+
+# check that project exists
+if [ ! -d "$PROJECT_BASE/$1" ]; then
+	echo "project \"$PROJECT_BASE/$1\" not found or not a directory" >&2
+	exit 1
+fi
+
+RUN_DIR="$PROJECT_BASE/$1"
+SRC_DIR="$PROJECT_BASE/$1"
+
+# special case for cmake projects
+if [ -f "$RUN_DIR/CMakeLists.txt" ]; then
+	RUN_DIR="$RUN_DIR/build"
+	if [ ! -d "$RUN_DIR" ]; then
+		mkdir -p "$RUN_DIR"
+	fi
+	if [ -d "$SRC_DIR" ]; then
+		SRC_DIR="$SRC_DIR/src"
+	fi
+fi
+
+# create new session
+tmux new-session -d -c "$RUN_DIR" -s "$1"
+tmux new-window -c "$SRC_DIR" -t "$1"
+
+# launch editor in src dir
+tmux send-keys -t 1 "vim ." C-m
+
+# attach session
+tmux attach-session -t "$1"
+

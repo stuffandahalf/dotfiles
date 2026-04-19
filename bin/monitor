@@ -1,0 +1,34 @@
+#!/bin/sh
+
+SESSION="monitoring"
+if [ "$SENSORS" == "" ]; then
+	SENSORS="sensors"
+fi
+
+set -e
+
+if tmux has-session -t "$SESSION" 2>/dev/null; then
+	tmux attach-session -t "$SESSION"
+	exit 0
+fi
+
+tmux new-session -d -s "$SESSION"
+
+# split window into three even panes
+tmux split-window -h
+tmux split-window -h
+tmux select-layout even-horizontal
+tmux split-window -v -t 2
+
+# launch monitoring commands
+tmux send-keys -t 0 "sudo dmesg -w" C-m
+tmux send-keys -t 1 "sleep 1 && watch $SENSORS" C-m
+tmux send-keys -t 2 "htop" C-m
+tmux send-keys -t 3 "nvtop" C-m
+
+# select dmesg pane for quicker sudo password entry
+tmux select-pane -t 0
+
+# attach session
+tmux attach-session -t "$SESSION"
+
